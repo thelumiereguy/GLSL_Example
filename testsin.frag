@@ -9,6 +9,6 @@ void main(){
     
     float yGradients=abs(sin(coords.x*3.14159*4.));
     float xGradients=abs(sin(coords.y*3.14159*4.));
-    
-    gl_FragColor=vec4(vec3(xGradients)*vec3(yGradients),1.);
+    float doc=dot(vec3(xGradients),vec3(yGradients));
+    gl_FragColor=vec4(vec3(xGradients)*vec3(yGradients),doc);
 }
