@@ -2,37 +2,21 @@
 precision mediump float;
 #endif
 
-uniform vec2 u_resolution;
+const float PI=3.14159265359;
 
-vec3 getSquare(vec2 coords,vec2 start,vec2 end,vec3 color){
-    vec2 leftbottom=step(start,coords);
-    vec2 rightTop=step(end,1.-coords);
-    return color*(leftbottom.x*leftbottom.y*rightTop.y*rightTop.x);
-}
+uniform vec2 u_resolution;
 
 void main(){
     vec2 coords=gl_FragCoord.xy/u_resolution.xy;
-    const int squares=3;
-    float increments=1./float(squares);
-    bool rowColor=false;
-    bool columnColor=false;
+    const int rows=5;
+    const int columns=5;
     
-    vec3 canvas=vec3(.0);
+    vec3 canvasColor=vec3(.0);
     
-    for(int index=0;index<squares;index++){
-        for(int index2=0;index2<squares;index2++){
-            vec3 square=getSquare(
-                coords,
-                vec2(increments*float(index2),increments*float(index)),
-                vec2(1.-(increments*float(index2+1)),1.-(increments*float(index+1))),
-                vec3(rowColor)
-            );
-            canvas=mix(canvas,square,square);
-            rowColor=!rowColor;
-        }
-        columnColor=!columnColor;
-        rowColor=columnColor;
-    }
+    float XAxis=sign(sin(coords.x*(PI)*float(rows)));
+    float YAxis=sign(sin(coords.y*(PI)*float(columns)));
     
-    gl_FragColor=vec4(canvas,1.);
+    canvasColor=canvasColor+(XAxis*YAxis);
+    
+    gl_FragColor=vec4(canvasColor,1.);
 }
