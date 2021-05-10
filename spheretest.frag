@@ -75,8 +75,7 @@ vec3 rayDirection(float fieldOfView,vec2 size,vec2 fragCoord){
     return normalize(vec3(xy,-z));
 }
 
-void main()
-{
+void main(){
     vec3 dir=rayDirection(75.,u_resolution.xy,gl_FragCoord.xy);
     vec3 eye=vec3(0.,0.,5.);
     float dist=shortestDistanceToSurface(eye,dir,MIN_DIST,MAX_DIST);
