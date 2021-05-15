@@ -6,7 +6,8 @@ uniform float u_time;
 uniform vec2 u_resolution;
 
 const vec3 milky_cream_colour=vec3(234./255.,242./255.,239./255.);
-const vec3 magenta_colour=vec3(31./255.,59./255.,77./255.);
+const vec3 blue_colour=vec3(31./255.,59./255.,77./255.);
+const float rings=5.;
 
 // Creates a circle shape using the Origin position
 float createCircle(float radius,vec2 position){
@@ -15,10 +16,8 @@ float createCircle(float radius,vec2 position){
 
 // Mixes 2 colours according to values between 0-1
 vec3 getColor(float circleValue){
-    return mix(milky_cream_colour,magenta_colour,circleValue);
+    return mix(milky_cream_colour,blue_colour,circleValue);
 }
-
-const float rings=5.;
 
 void main(){
     vec2 coord=gl_FragCoord.xy/u_resolution.xy-.5;
