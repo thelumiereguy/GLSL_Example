@@ -11,6 +11,7 @@ float circle_shape(vec2 position,float radius){
 void main(){
     // for normalizing screen
     vec2 position=(gl_FragCoord.xy/u_resolution)-.5;
+    position.x*=u_resolution.x/u_resolution.y;
     
     //setting black color
     vec3 color=vec3(0.);

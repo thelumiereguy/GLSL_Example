@@ -8,6 +8,8 @@ uniform vec2 u_resolution;
 
 void main(){
     vec2 normalizedCoords=gl_FragCoord.xy/u_resolution.xy;
+     normalizedCoords.x*=u_resolution.x/u_resolution.y;
+
     const int rows=5;
     const int columns=5;
     
