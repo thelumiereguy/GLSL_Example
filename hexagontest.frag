@@ -10,7 +10,7 @@ const float PI=3.14159265359;
 
 float polygonShape(vec2 position,float radius,float sides){
     position*=2.-1.;
-    float angle=atan(position.x,position.y);
+    float angle=atan(position.y,position.x);
     float slice=PI*2./sides;
     return step(radius,cos(floor(.5+angle/slice)*slice-angle)*length(position));
 }
@@ -20,7 +20,7 @@ void main(){
     coord.x*=u_resolution.x/u_resolution.y;
     vec3 color=vec3(0.);
     
-    float polygonValue=polygonShape(coord,.1,11.);
+    float polygonValue=polygonShape(coord,.1,5.);
     
     color=vec3(polygonValue);
     
