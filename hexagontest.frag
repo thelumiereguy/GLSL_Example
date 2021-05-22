@@ -8,11 +8,15 @@ uniform vec2 u_mouse;
 
 const float PI=3.14159265359;
 
-float polygonShape(vec2 position,float radius,float sides){
-    position*=2.-1.;
-    float angle=atan(position.y,position.x);
-    float slice=PI*2./sides;
-    return step(radius,cos(floor(.5+angle/slice)*slice-angle)*length(position));
+float polygonShape(vec2 pos,float radius,float sides){
+    float angle=atan(pos.x,pos.y);
+    float slice=2.*PI/sides;
+    float angulus=(PI-slice)/2.;
+    float modangle=abs(mod(angle,slice));
+    float dis=radius/sin(PI-angulus-modangle);
+    // float angle=((PI*2.)/sides)/2.;
+    // float ab=sin(angle)*radius;
+    return step(dis,length(pos));
 }
 
 void main(){
