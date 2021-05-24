@@ -7,11 +7,14 @@ uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 
 float createCircle(vec2 position,float radius){
-    return step(length(position),radius);
+    return length(position)-radius;
 }
 
-float line(vec2 pointA,vec2 pointB){
-    return smoothstep(.002,.001,abs(pointA.y-pointA.x));
+float line(in vec2 p,in vec2 a,in vec2 b)
+{
+    vec2 pa=p-a,ba=b-a;
+    float h=clamp(dot(pa,ba)/dot(ba,ba),0.,1.);
+    return length(pa-ba*h);
 }
 
 void main(){
@@ -23,9 +26,15 @@ void main(){
     float circle2=createCircle(coord,.05);
     float circle3=createCircle(coord-vec2(-.25*sin(u_time),-.25),.05);
     
-    float line1=line(coord,coord-vec2(-.25,-.25));
-    
-    color*=(circle1+circle2+circle3+line1);
-    
-    gl_FragColor=vec4(color,1.);
+    vec2 a=vec2(.1,.1);
+    vec2 b=vec2(-.1,-.1);
+    //this is the signed distance from all pixels to the line
+    //it will give a half plane (black an white for positive and negative)
+    float dist=line(coord,a,b);
+    // to make a line we can do that : it uses the "gradient" of the SDF
+// the part where the function returns a value between 0 and 1. try changin the 5 :)
+
+color*=(sign(circle1)*sign(circle2)*sign(circle3)*step(.001,dist));
+
+gl_FragColor=vec4(color,1.);
 }
