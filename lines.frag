@@ -26,8 +26,8 @@ void main(){
     float circle2=createCircle(coord,.05);
     float circle3=createCircle(coord-vec2(-.25*sin(u_time),-.25),.05);
     
-    vec2 a=vec2(.1,.1);
-    vec2 b=vec2(-.1,-.1);
+    vec2 a=vec2(.25*sin(u_time),.25);
+    vec2 b=vec2(-.25*sin(u_time),-.25);
     //this is the signed distance from all pixels to the line
     //it will give a half plane (black an white for positive and negative)
     float dist=line(coord,a,b);
