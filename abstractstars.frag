@@ -32,9 +32,15 @@ void main(){
     scaledCoords.x=fract(scaledCoords.x);
     scaledCoords.y=fract(scaledCoords.y);
     
-    scaledCoords=(scaledCoords-.5)*rotate(coord.y+u_time)+vec2(.5);
+    // rotate each coordinate systems
+    scaledCoords=(scaledCoords-.5)*rotate((coord.y)+u_time);
     
-    float squares=createSquare(scaledCoords,.5,.35);
+    //then translate back to origin by adding 0.5
+    scaledCoords+=vec2(.5);
+    
+    float squares=createSquare(scaledCoords,.5,.4);
+    
     color+=squares;
+    
     gl_FragColor=vec4(color,1.);
 }
