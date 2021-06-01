@@ -10,10 +10,6 @@ float createCircle(vec2 position,float radius){
     return step(length(position-.5),radius);
 }
 
-float noise1d(float v){
-    return cos(v+cos(v*90.1415)*100.1415)*.5+.5;
-}
-
 void main(){
     vec2 coord=gl_FragCoord.xy/u_resolution;
     coord.x*=u_resolution.x/u_resolution.y;
@@ -28,7 +24,7 @@ float sinValue=(sin((coord.x*20.)+u_time)*.03);
 //create the actual wave
 float actualWave=step(
     coord.y,
-    sinValue+cos(u_time)*.2+.3+(noise1d(tan(u_time))*.0056)
+    sinValue+cos(u_time)*.2+.3
 );
 
 vec2 circleCoords=coord*50.;
