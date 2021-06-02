@@ -21,14 +21,14 @@ void main(){
     vec2 scaledCoords=coord;
     
     //get length from origin
-    float scaledLength=sin(scaledCoords.y+u_time)*0.2;
+    float scaledLength=cos(scaledCoords.y+u_time)*.2;
     float dividedLength=mod(-scaledLength,4.)/8.;
     
     //divide into multiple smaller coordinate systems
     coord=vec2(fract(coord.x),fract(coord.y));
     
     //Create torus in all coordinate systems
-    color+=createTorus(coord,.6,dividedLength);
+    color+=createTorus(coord,.1,dividedLength);
     
     gl_FragColor=vec4(color,1.);
 }
