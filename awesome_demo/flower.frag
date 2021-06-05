@@ -14,7 +14,7 @@ float getAngle(vec2 position,float slices){
     return
     abs(
         fract(
-            atan(position.y,position.x)*3.*slices
+            atan(position.y,position.x)*3.14*slices
         )-.5
     );
 }
