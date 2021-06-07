@@ -24,7 +24,7 @@ void main(){
     coord*=rotate(u_time);
     float flake=getflake(
         (coord-(fract(coord.x+coord.y)))*rotate(u_time),
-        .1,
+        .15,
         6.
     );
     
