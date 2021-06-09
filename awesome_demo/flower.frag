@@ -21,8 +21,9 @@ float getAngle(vec2 position,float slices){
 
 void main(){
     vec2 coord=gl_FragCoord.xy/u_resolution-.5;
+    coord.x*=u_resolution.x/u_resolution.y;
     vec3 color=vec3(0.);
-    vec2 newCoords=coord*2.;
+    vec2 newCoords=coord*3.1;
     newCoords=vec2(fract(newCoords.x),fract(newCoords.y));
     float circles=length(newCoords-.5);
     
@@ -30,6 +31,6 @@ void main(){
     
     coord*=rotate(u_time*.2);
     float angle=getAngle(coord,1.);
-    color+=((angle-circles)*3.);
+    color+=((angle-circles)*2.);
     gl_FragColor=vec4(color,1.);
 }
