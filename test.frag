@@ -6,20 +6,35 @@ uniform float u_time;
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 
+mat3 rotateZ(float angle){
+    return
+    mat3(
+        1.,0,0,
+        0,cos(angle),-sin(angle),
+        0,sin(angle),cos(angle)
+    )
+    *mat3(
+        cos(angle),0.,sin(angle),
+        0,1.,0.,
+        -sin(angle),0.,cos(angle)
+    )*mat3(
+        cos(angle),-sin(angle),0.,
+        sin(angle),cos(angle),0.,
+        0,0.,1.
+    );
+}
 
 void main(){
     vec2 coord=(gl_FragCoord.xy/u_resolution)*2.-1.;
+    coord.x*=u_resolution.x/u_resolution.y;
     
-    vec3 coord3=vec3(coord,length(coord));
-
-    coord3=coord3*rotateY(u_time*.3);
+    vec3 eyePosition=vec3(0.,0.,-2.);
+    
+    vec3 rd=vec3(coord,0.);
+    
+    // coord3=coord3*rotateZ(u_time*.3);
     
     vec3 color=vec3(0.);
-    
-    float circle=length(coord)
-    -(cos(atan(coord.y,coord.x)*6.)*sin(u_time)*.1)-.1;
-    
-    color+=step(1./(exp(circle)),.6);
     
     gl_FragColor=vec4(color,1.);
 }
