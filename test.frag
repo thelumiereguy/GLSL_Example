@@ -32,8 +32,6 @@ void main(){
     
     vec3 rd=vec3(coord,0.);
     
-    // coord3=coord3*rotateZ(u_time*.3);
-    
     vec3 color=vec3(0.);
     
     gl_FragColor=vec4(color,1.);
