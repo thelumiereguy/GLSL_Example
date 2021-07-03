@@ -6,7 +6,7 @@ uniform float u_time;
 uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 
-void main(){
+void main(){ 
     float mx=(u_resolution.x/u_resolution.y);
     vec2 uv=(gl_FragCoord.xy/u_resolution-.5);
     uv.x*=u_resolution.x/u_resolution.y;
