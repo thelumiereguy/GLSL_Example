@@ -24,7 +24,7 @@ void main(){
     coord.x*=u_resolution.x/u_resolution.y;
     vec3 color=vec3(0.);
     
-    float polygonValue=polygonShape(coord,.1,5.);
+    float polygonValue=polygonShape(coord,.1,3.);
     
     color=vec3(polygonValue);
     
