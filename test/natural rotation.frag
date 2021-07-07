@@ -16,12 +16,12 @@ void main(){
     
     vec3 color=vec3(0.,0.,0.);
     
-    // coord*=rotate(length(coord)*2.);
+    coord*=rotate(sin(u_time*cos(u_time)+sin(length(coord))*2.));
     
     float fract=fract(coord.x*10.)-.5+sin(coord.y*200.)*.1;
     
     float sin=step(
-        fract,.0
+        fract,sin(u_time)*.56
     );
     
     color+=(sin);
